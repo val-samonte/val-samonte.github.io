@@ -1,0 +1,16 @@
+body { color: #555;  background-color: #eee; }
+@media(max-width:767px){
+  .intro-text {
+    text-align: center;
+  }
+  section {
+    text-align: justify;
+  }
+}
+@media(min-width:768px){
+  .intro-text {
+    text-align: right;
+  }
+}
+footer img { height: 20px; }
+.buffer { margin-top:40px; margin-bottom:40px; }
