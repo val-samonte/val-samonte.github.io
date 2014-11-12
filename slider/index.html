@@ -64,9 +64,8 @@
     </ul>
     <div>Zoom x{{ zoomIndex+1 }} <button type="button" ng-click="zoomOn(1)">+</button><button type="button" ng-click="zoomOn(-1)">-</button></div>
     <div id="slider-container" msd-wheel="onSliderScroll($event, $delta)">
-      <vds-slider ng-model="entries[datePick+'']" width="zoom" step="step"></vds-slider>
+      <vds-slider ng-model="entries[datePick+'']" width="zoom" step="step" measures="measures"></vds-slider>
     </div>
-    <input type="number" ng-model="step">
   </div>
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -124,11 +123,22 @@
       angular.module('sliderDemo',['vds.slider','ui.bootstrap','monospaced.mousewheel'])
         .controller('DemoCtrl', function($scope, timeUtility) {
 
+          $scope.measures = [
+            { label: 'Hour', step: timeUtility.minuteToFraction(60), points: [] },
+            { label: 'Quarter', step: timeUtility.minuteToFraction(15), points: [] },
+            { label: 'Minute', step: timeUtility.minuteToFraction(1), points: [] }
+          ];
+          for(var i=0; i<measures.length; i++) {
+            measures[i] = [];
+            for(var j=0; j<1; j+= measures[i].step) {
+              measures[i].points.push(j);
+            }
+          }
           $scope.zoomPoints = [
-            { multiplier: 1, step: 0.01041666666 },
-            { multiplier: 1.4, step: 0.00347222222 },
-            { multiplier: 1.8, step: 0.0006944444444444445 },
-            { multiplier: 2.2, step: 0.0006944444444444445 }
+            { multiplier: 1, step: timeUtility.minuteToFraction(15) },
+            { multiplier: 1.4, step: timeUtility.minuteToFraction(10) },
+            { multiplier: 1.8, step: timeUtility.minuteToFraction(5) },
+            { multiplier: 2.2, step: timeUtility.minuteToFraction(1) }
           ];
           $scope.zoomIndex = 0;
           $scope.zoomOn = function (delta) {
@@ -141,11 +151,12 @@
             $scope.zoom = $scope.zoomPoints[$scope.zoomIndex].multiplier*400;
             $scope.step = $scope.zoomPoints[$scope.zoomIndex].step * $scope.zoom;
           };
-          $scope.zoomOn(0);
           $scope.onSliderScroll = function (event, delta) {
             $scope.zoomOn(delta);
             event.preventDefault();
           };
+
+          $scope.zoomOn(0);
 
           $scope.entryTypes = [
             new EntryType('Clock in', 'start', 'log'),
@@ -234,6 +245,12 @@
                 hours: d.getUTCHours(),
                 minutes: d.getUTCMinutes()
               };
+            },
+            minuteToFraction: function (minutes) {
+              var d = new Date(dayConst),
+                e = new Date(0);
+              e.setUTCMinutes(minutes);
+              return e.getTime() / d.getTime();
             }
           };
         });

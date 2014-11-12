@@ -4,12 +4,14 @@ angular.module('vds.slider',[])
     return {
       scope: {
         step: '=',
+        width: '=',
+        measures: '=',
         data: '=ngModel',
-        width: '='
       },
       replace: true,
       template:
         '<ul class="vds-slider" style="width: {{ width }}px; display: inline-block;" ng-mousemove="onMousemove($event)">' +
+          '<li class="vds-hairline" ng-repeat="hair in measures[0].point" style="left: {{ hair }}px;"></li>'
           '<vds-stop-marker ng-repeat="marker in data" ng-model="marker" root-width="width" root-mouse-x="mouseX"></vds-stop-marker>' +
         '</ul>',
       link: function (scope, elem, attr, ctrl) {
