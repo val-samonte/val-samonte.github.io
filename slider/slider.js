@@ -23,7 +23,7 @@ angular.module('vds.slider',[])
           } else if(posx < 0) {
             posx = 0;
           }
-          scope.mouseX = Math.round(posx/scope.step) * scope.step;
+          scope.mouseX = posx; //Math.round(posx/scope.step) * scope.step;
         }
 
       }
