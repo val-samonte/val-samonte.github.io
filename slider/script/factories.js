@@ -49,6 +49,7 @@ angular.module('sliderDemo')
           _entries[_date] = [];
         }
         var len = _entries[_date].push(new Entry(type, value, reason));
+        console.log(_entries[_date]);
         return _entries[_date][len-1];
       },
       remove: function (entry) {
