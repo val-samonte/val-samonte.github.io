@@ -3,6 +3,8 @@
   <meta charset="UTF-8">
   <title>Slider</title>
   <link rel="stylesheet" href="slider.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -36,6 +38,9 @@
 
   <div ng-controller="DemoCtrl">
     <form ng-submit="addNewEntry()">
+      <div style="display:inline-block; min-height:290px;">
+        <datepicker ng-model="datePick" min-date="minDate" class="well well-sm"></datepicker>
+      </div>
       <div>
         <p>Enter new entry:</p>
         <input type="number" class="time-input" ng-model="newTimeHour" min="0" max="23"> :
@@ -59,7 +64,10 @@
     </div>
   </div>
 
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
   <script src="bower_components/hamsterjs/hamster.js"></script>
   <script src="bower_components/angular-mousewheel/mousewheel.js"></script>
   <script src="slider.js"></script>
@@ -108,7 +116,7 @@
         this.label = this.getTypeData().label;
       }
 
-      angular.module('sliderDemo',['vds.slider','monospaced.mousewheel'])
+      angular.module('sliderDemo',['vds.slider','ui.bootstrap','monospaced.mousewheel'])
         .controller('DemoCtrl', function($scope, timeUtility) {
 
           $scope.zoomPoints = [
@@ -139,6 +147,7 @@
           ];
 
           $scope.entries = [];
+          $scope.minDate = new Date();
           $scope.newTimeHour = 0;
           $scope.newTimeMin = 0;
           $scope.addNewEntry = function () {
