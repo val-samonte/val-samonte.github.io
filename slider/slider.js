@@ -39,7 +39,7 @@ angular.module('vds.slider',[])
       replace: true,
       template:
         '<li class="vds-stop-marker" style="left: {{ pos = (dragging? (data.val = rootMouseX / rootWidth) : data.val) * rootWidth }}px">' +
-          '<button type="button" ng-mousedown="dragging = true" ng-mouseup="dragging = false"></button><div class="vds-pin"></div>'+
+          '<button data-toggle="tooltip" data-placement="top" title="{{data.label}}" type="button" ng-mousedown="dragging = true" ng-mouseup="dragging = false"></button><div class="vds-pin"></div>'+
         '</li>',
       link: function (scope, elem, attr, ctrl) {
 
