@@ -64,7 +64,7 @@
     </ul>
     <div>Zoom x{{ zoomIndex+1 }} <button type="button" ng-click="zoomOn(1)">+</button><button type="button" ng-click="zoomOn(-1)">-</button></div>
     <div id="slider-container" msd-wheel="onSliderScroll($event, $delta)">
-      <vds-slider ng-model="entries" width="zoom"></vds-slider>
+      <vds-slider ng-model="entries[datePick+'']" width="zoom"></vds-slider>
     </div>
   </div>
 
