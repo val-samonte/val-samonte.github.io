@@ -1,0 +1,35 @@
+.vds-slider {
+  list-style: none;
+  padding: 0;
+  position: relative;
+  min-width: 400px;
+  width: 400px;
+  height: 10px;
+  background-color: rgba(0,3,9,0.25);
+  display: inline-block;
+}
+
+.vds-stop-marker {
+  position: absolute;
+  bottom: 0;
+/*  transition-duration: 0.2s;*/
+}
+
+.vds-stop-marker button {
+  margin: 10px -50%;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 0 0 10px 10px;
+  display: inline-block;
+  background-color: rgba(0,0,255,0.25);
+  cursor: pointer;
+}
+
+.vds-stop-marker .vds-pin {
+  height: 10px;
+  margin-bottom: -13px;
+  display: inline-block;
+  border-left: 1px solid rgba(0,0,100,0.25);
+  border-right: 1px solid rgba(0,0,100,0.25);
+}
+

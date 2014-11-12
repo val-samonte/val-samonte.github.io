@@ -1,0 +1,219 @@
+<html ng-app="sliderDemo">
+<head>
+  <meta charset="UTF-8">
+  <title>Slider</title>
+  <link rel="stylesheet" href="slider.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+    }
+
+    #slider-container {
+      width: 400px;
+      padding: 20px;
+      overflow-x: auto;
+      background-color: rgba(0,0,0,0.15);
+    }
+
+    .time-input {
+      width: 50px;
+      text-align: right;
+    }
+
+    .entry-list {
+      list-style: none;
+      padding-left: 10px;
+    }
+
+    .time-input-label {
+      width: 100px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div ng-controller="DemoCtrl">
+    <form ng-submit="addNewEntry()">
+      <div>
+        <p>Enter new entry:</p>
+        <input type="number" class="time-input" ng-model="newTimeHour" min="0" max="23"> :
+        <input type="number" class="time-input" ng-model="newTimeMin" min="0" max="59">
+        <select ng-model="newType" ng-options="type.getData().label for type in entryTypes" required></select>
+        <input type="text" ng-show="newType.getData().group=='break'" placeholder="Provide reason" ng-model="newReason">
+        <button type="submit">Add</button>
+      </div>
+    </form>
+    <hr>
+    <ul class="entry-list">
+      <li ng-repeat="entry in entries | orderBy: 'val'  ">
+        <label class="time-input-label">{{ entry.getTypeData().label }} </label>
+        <time-input ng-model="entry.val"></time-input>
+        <button type="button" ng-click="removeEntry($index)">Remove</button>
+      </li>
+    </ul>
+    <div>Zoom x{{ zoomIndex+1 }} <button type="button" ng-click="zoomOn(1)">+</button><button type="button" ng-click="zoomOn(-1)">-</button></div>
+    <div id="slider-container" msd-wheel="onSliderScroll($event, $delta)">
+      <vds-slider ng-model="entries" width="zoom"></vds-slider>
+    </div>
+  </div>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/hamsterjs/hamster.js"></script>
+  <script src="bower_components/angular-mousewheel/mousewheel.js"></script>
+  <script src="slider.js"></script>
+  <script>
+    (function () {
+
+      var EntryType = function (label, phase, group) {
+        this.getData = function () {
+          return { label: label, phase: phase, group: group };
+        }
+      }
+
+      var Entry = function (type, value, reason) {
+        if(!(type instanceof EntryType)) {
+          throw new Error('Parameter 1 is not an EntryType instance.');
+        }
+        if(isNaN(value)) {
+          throw new Error('Parameter 2 is not numeric.');
+        }
+        this.val = value;
+        this.reason = reason;
+        this.getType = function () {
+          return type;
+        }
+        this.getTypeData = function () {
+          return type.getData();
+        }
+        this.isType = function (targetType) {
+          if(typeof targetType != 'undefined') {
+            return type === targetType;
+          }
+          return false;
+        }
+        this.isPairWith = function (targetEntry) {
+          if(!(targetEntry instanceof Entry)) {
+            throw new Error('Parameter is invalid. Datatype Entry required.');
+          }
+          if(typeof targetEntry != 'undefined') {
+            var typeData = type.getData(),
+              targetTypeData = targetEntry.getTypeData();
+            return typeData.phase !== targetTypeData.phase &&
+              typeData.group === targetTypeData.group;
+          }
+          return false;
+        }
+        this.label = this.getTypeData().label;
+      }
+
+      angular.module('sliderDemo',['vds.slider','monospaced.mousewheel'])
+        .controller('DemoCtrl', function($scope, timeUtility) {
+
+          $scope.zoomPoints = [
+            { multiplier: 1 },
+            { multiplier: 1.2 },
+            { multiplier: 1.4 },
+            { multiplier: 1.6 }
+          ];
+          $scope.zoomIndex = 0;
+          $scope.zoomOn = function (delta) {
+            $scope.zoomIndex += delta;
+            if($scope.zoomIndex<0) {
+              $scope.zoomIndex = 0;
+            } else if($scope.zoomIndex >= $scope.zoomPoints.length) {
+              $scope.zoomIndex = $scope.zoomPoints.length - 1;
+            }
+            $scope.zoom = $scope.zoomPoints[$scope.zoomIndex].multiplier*400;
+          };
+          $scope.onSliderScroll = function (event, delta) {
+            $scope.zoomOn(delta);
+          };
+
+          $scope.entryTypes = [
+            new EntryType('Clock in', 'start', 'log'),
+            new EntryType('Clock out', 'end', 'log'),
+            new EntryType('Start break', 'start', 'break'),
+            new EntryType('End break', 'end', 'break')
+          ];
+
+          $scope.entries = [];
+          $scope.newTimeHour = 0;
+          $scope.newTimeMin = 0;
+          $scope.addNewEntry = function () {
+            if(typeof $scope.newType != 'undefined') {
+              if($scope.newType.getData().group == 'break' && typeof $scope.newReason == 'undefined') {
+                console.log($scope.newType.getData().group == 'break', $scope.newReason)
+                alert('Please provide your reason for taking a break.');
+              } else {
+                $scope.entries.push( new Entry( $scope.newType, timeUtility.toValue($scope.newTimeHour, $scope.newTimeMin), $scope.newReason ));
+                $scope.newTimeHour = 0;
+                $scope.newTimeMin = 0;
+                $scope.newReason = undefined;
+              }
+            } else {
+              alert('Please select entry type.');
+            }
+          };
+          $scope.removeEntry = function (idx) {
+            $scope.entries.splice(idx,1);
+          }
+
+        })
+
+        .directive('timeInput', function (timeUtility) {
+          return {
+            restrict: 'E',
+            scope: {
+              data: '=ngModel'
+            },
+            template:
+              '<input type="number" class="time-input" ng-model="in_hour" min="0" max="23"> : ' +
+              '<input type="number" class="time-input" ng-model="in_minute" min="0" max="59">',
+            link: function (scope, elem, attr) {
+              scope.in_hour = 0;
+              scope.in_minute = 0;
+              scope.$watch('data', function () {
+                var time = timeUtility.toTime(scope.data);
+                scope.in_hour = scope.out_hour = time.hours;
+                scope.in_minute = scope.out_minute = time.minutes;
+              });
+              scope.$watch('in_hour', function () {
+                if(scope.in_hour != scope.out_hour) {
+                  scope.data = timeUtility.toValue(scope.in_hour, scope.in_minute);
+                }
+              });
+              scope.$watch('in_minute', function () {
+                if(scope.in_minute != scope.out_minute) {
+                  scope.data = timeUtility.toValue(scope.in_hour, scope.in_minute);
+                }
+              });
+            }
+          }
+        })
+
+        .factory('timeUtility', function () {
+          var dayConst = 24*60*60*1000;
+          return {
+            toValue: function (hours, minutes) {
+              var d = new Date(0);
+              d.setUTCHours(hours);
+              d.setUTCMinutes(minutes);
+              return d.getTime() / dayConst;
+            },
+            toTime: function (value) {
+              var d = new Date(dayConst * value);
+              return {
+                hours: d.getUTCHours(),
+                minutes: d.getUTCMinutes()
+              };
+            }
+          };
+        });
+
+    })();
+  </script>
+
+</body>
+</html>
