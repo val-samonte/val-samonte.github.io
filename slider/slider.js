@@ -14,7 +14,6 @@ angular.module('vds.slider',[])
         '</ul>',
       link: function (scope, elem, attr, ctrl) {
 
-        scope.step = 0.01;
         scope.width = elem[0].clientWidth;
         scope.onMousemove = function(e) {
           var bound = elem[0].getBoundingClientRect(), posx = e.pageX - bound.left;
@@ -23,7 +22,10 @@ angular.module('vds.slider',[])
           } else if(posx < 0) {
             posx = 0;
           }
-          scope.mouseX = posx; //Math.round(posx/scope.step) * scope.step;
+          if(typeof scope.step == 'undefined') {
+            scope.step = 1;
+          }
+          scope.mouseX = Math.round(posx*100/scope.step) / 100 * scope.step;
         }
 
       }
