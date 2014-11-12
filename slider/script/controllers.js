@@ -59,7 +59,7 @@ angular.module('sliderDemo')
 
     entry.setDate( $scope.datePick );
 
-    $scope.entries = entry.getDateEntries;
+    $scope.entries = entry.getEntries;
 
     $scope.newTimeHour = 0;
 
