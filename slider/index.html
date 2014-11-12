@@ -59,7 +59,7 @@
       <li ng-repeat="entry in entries[datePick+''] | orderBy: 'val'  ">
         <label class="time-input-label">{{ entry.getTypeData().label }} </label>
         <time-input ng-model="entry.val"></time-input>
-        <button type="button" ng-click="removeEntry($index)">Remove</button>
+        <button type="button" ng-click="removeEntry(entry)">Remove</button>
       </li>
     </ul>
     <div>Zoom x{{ zoomIndex+1 }} <button type="button" ng-click="zoomOn(1)">+</button><button type="button" ng-click="zoomOn(-1)">-</button></div>
@@ -173,8 +173,13 @@
               alert('Please select entry type.');
             }
           };
-          $scope.removeEntry = function (idx) {
-            $scope.entries[$scope.datePick+''].splice(idx,1);
+          $scope.removeEntry = function (entry) {
+            var entries = $scope.entries[$scope.datePick+''];
+            for(var i=0; i<entries.length; i++) {
+              if(entries[i] == entry) {
+                $scope.entries[$scope.datePick+''].splice(i,1);
+              }
+            }
           }
 
         })
