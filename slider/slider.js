@@ -11,6 +11,7 @@ angular.module('vds.slider',[])
       replace: true,
       template:
         '<ul class="vds-slider" style="width: {{ width }}px; display: inline-block;" ng-mousemove="onMousemove($event)">' +
+          '<li>{{ measures[0] }}</li>' +
           '<li class="vds-hairline" ng-repeat="hair in measures[0].point" style="left: {{ hair*width }}px;">|</li>' +
           '<vds-stop-marker ng-repeat="marker in data" ng-model="marker" root-width="width" root-mouse-x="mouseX"></vds-stop-marker>' +
         '</ul>',
