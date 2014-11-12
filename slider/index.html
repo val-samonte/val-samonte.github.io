@@ -125,12 +125,12 @@
         .controller('DemoCtrl', function($scope, timeUtility) {
 
           $scope.zoomPoints = [
-            { multiplier: 1, step: 1.0416666666666668 },
-            { multiplier: 1.4 },
-            { multiplier: 1.8 },
-            { multiplier: 2.2 }
+            { multiplier: 1, step: 4.1666666666666664 },
+            { multiplier: 1.4, step: 4.16666666666666 },
+            { multiplier: 1.8, step: 1 },
+            { multiplier: 2.2, step: 1 }
           ];
-          $scope.step = 1;
+          $scope.step = 4.1666666666666664;
           $scope.zoomIndex = 0;
           $scope.zoomOn = function (delta) {
             $scope.zoomIndex += delta;
@@ -139,7 +139,7 @@
             } else if($scope.zoomIndex >= $scope.zoomPoints.length) {
               $scope.zoomIndex = $scope.zoomPoints.length - 1;
             }
-//            $scope.step = 4;
+            $scope.step = $scope.zoomPoints[$scope.zoomIndex].step;
             $scope.zoom = $scope.zoomPoints[$scope.zoomIndex].multiplier*400;
           };
           $scope.onSliderScroll = function (event, delta) {

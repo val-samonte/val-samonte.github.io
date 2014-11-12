@@ -17,7 +17,7 @@ angular.module('vds.slider',[])
         scope.width = elem[0].clientWidth;
         scope.onMousemove = function(e) {
           var bound = elem[0].getBoundingClientRect(), posx = e.pageX - bound.left;
-          posx = Math.round(posx/scope.step) * scope.step;
+          posx = Math.floor(posx/scope.step) * scope.step;
           if(posx > bound.width) {
             posx = bound.width;
           } else if(posx < 0) {
