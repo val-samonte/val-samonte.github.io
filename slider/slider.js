@@ -14,7 +14,7 @@ angular.module('vds.slider',[])
           '<li class="vds-hairline" ng-repeat="hair in measures[0].points" style="left: {{ hair*width }}px;">' +
             '<span>{{ $index }}</span>' +
           '</li>' +
-          '<li class="vds-hairline" ng-repeat="hair in measures[1].points" style="left: {{ hair*width }}px;"></li>' +
+          '<li class="vds-hairline minor" ng-repeat="hair in measures[1].points" style="left: {{ hair*width }}px;"></li>' +
           '<vds-stop-marker ng-repeat="marker in data" ng-model="marker" root-width="width" root-mouse-x="mouseX">' +
           '</vds-stop-marker>' +
         '</ul>',

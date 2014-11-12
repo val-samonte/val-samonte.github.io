@@ -42,6 +42,10 @@
   height: 12px;
 }
 
+.vds-hairline .minor {
+  height: 6px;
+}
+
 .vds-hairline span {
   margin: -50%;
   font-size: 8px;
