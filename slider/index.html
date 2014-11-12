@@ -56,7 +56,7 @@
     </form>
     <hr>
     <ul class="entry-list">
-      <li ng-repeat="entry in entries | orderBy: 'val'  ">
+      <li ng-repeat="entry in entries[datePick+''] | orderBy: 'val'  ">
         <label class="time-input-label">{{ entry.getTypeData().label }} </label>
         <time-input ng-model="entry.val"></time-input>
         <button type="button" ng-click="removeEntry($index)">Remove</button>
@@ -66,7 +66,6 @@
     <div id="slider-container" msd-wheel="onSliderScroll($event, $delta)">
       <vds-slider ng-model="entries" width="zoom"></vds-slider>
     </div>
-    {{ datePick }}
   </div>
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -153,6 +152,7 @@
 
           $scope.entries = [];
           $scope.minDate = new Date();
+          $scope.datePick = new Date();
           $scope.newTimeHour = 0;
           $scope.newTimeMin = 0;
           $scope.addNewEntry = function () {
@@ -161,7 +161,10 @@
                 console.log($scope.newType.getData().group == 'break', $scope.newReason)
                 alert('Please provide your reason for taking a break.');
               } else {
-                $scope.entries.push( new Entry( $scope.newType, timeUtility.toValue($scope.newTimeHour, $scope.newTimeMin), $scope.newReason ));
+                if(typeof $scope.entries[$scope.datePick] == 'undefined') {
+                  $scope.entries[$scope.datePick+''] = [];
+                }
+                $scope.entries[$scope.datePick+''].push( new Entry( $scope.newType, timeUtility.toValue($scope.newTimeHour, $scope.newTimeMin), $scope.newReason ));
                 $scope.newTimeHour = 0;
                 $scope.newTimeMin = 0;
                 $scope.newReason = undefined;
@@ -171,7 +174,7 @@
             }
           };
           $scope.removeEntry = function (idx) {
-            $scope.entries.splice(idx,1);
+            $scope.entries[$scope.datePick+''].splice(idx,1);
           }
 
         })
