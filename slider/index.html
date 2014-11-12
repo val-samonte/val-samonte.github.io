@@ -58,7 +58,7 @@
     <ul class="entry-list">
       <li ng-repeat="entry in entries[datePick+''] | orderBy: 'val'  ">
         <label class="time-input-label">{{ entry.getTypeData().label }} </label>
-        <time-input ng-model="entry.val"></time-input>
+        <time-input ng-model="entry.val" step="step"></time-input>
         <button type="button" ng-click="removeEntry(entry)">Remove</button>
       </li>
     </ul>
@@ -124,11 +124,12 @@
         .controller('DemoCtrl', function($scope, timeUtility) {
 
           $scope.zoomPoints = [
-            { multiplier: 1 },
+            { multiplier: 1, step: 1.0416666666666668 },
             { multiplier: 1.4 },
             { multiplier: 1.8 },
             { multiplier: 2.2 }
           ];
+          $scope.step = 1;
           $scope.zoomIndex = 0;
           $scope.zoomOn = function (delta) {
             $scope.zoomIndex += delta;
@@ -137,6 +138,7 @@
             } else if($scope.zoomIndex >= $scope.zoomPoints.length) {
               $scope.zoomIndex = $scope.zoomPoints.length - 1;
             }
+            $scope.step = 1;
             $scope.zoom = $scope.zoomPoints[$scope.zoomIndex].multiplier*400;
           };
           $scope.onSliderScroll = function (event, delta) {
