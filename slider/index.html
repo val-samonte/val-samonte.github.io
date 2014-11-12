@@ -128,10 +128,10 @@
             { label: 'Quarter', step: timeUtility.minuteToFraction(15), points: [] },
             { label: 'Minute', step: timeUtility.minuteToFraction(1), points: [] }
           ];
-          for(var i=0; i<measures.length; i++) {
-            measures[i] = [];
-            for(var j=0; j<1; j+= measures[i].step) {
-              measures[i].points.push(j);
+          for(var i=0; i<$scope.measures.length; i++) {
+            $scope.measures[i] = [];
+            for(var j=0; j<1; j+= $scope.measures[i].step) {
+              $scope.measures[i].points.push(j);
             }
           }
           $scope.zoomPoints = [
