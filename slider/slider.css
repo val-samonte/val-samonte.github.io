@@ -37,6 +37,6 @@
   position: absolute;
   border-left: 1px solid black;
   display: inline-block;
-  bottom: 10px;
-  height: 10px;
+  bottom: -10px;
+  height: 12px;
 }
