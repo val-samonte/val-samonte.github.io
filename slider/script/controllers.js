@@ -1,5 +1,6 @@
-angular.module('sliderDemo',[])
+'use strict';
 
+angular.module('sliderDemo')
   .controller('DemoCtrl', function($scope, entry, timeUtility) {
 
     $scope.timeSliderWidth = 400;

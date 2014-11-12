@@ -1,5 +1,6 @@
-angular.module('sliderDemo',[])
+'use strict';
 
+angular.module('sliderDemo')
   .directive('timeInput', function (timeUtility) {
     return {
       restrict: 'E',

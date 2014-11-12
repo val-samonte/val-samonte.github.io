@@ -1,5 +1,6 @@
-angular.module('sliderDemo',[])
+'use strict';
 
+angular.module('sliderDemo')
   .factory('entry', function () {
     var _entries = [], _date = new Date().toDateString();
     var Entry = function (type, value, reason) {
