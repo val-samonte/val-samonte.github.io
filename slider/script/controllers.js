@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sliderDemo')
-  .controller('DemoCtrl', function($scope, entry, timeUtility) {
+  .controller('DemoCtrl', function($scope, timeEntry, timeUtility) {
 
     $scope.timeSliderWidth = 400;
 
@@ -51,15 +51,15 @@ angular.module('sliderDemo')
     $scope.datePick = new Date();
 
     $scope.entryTypes = [
-      entry.newType('Clock in', 'start', 'log'),
-      entry.newType('Clock out', 'end', 'log'),
-      entry.newType('Start break', 'start', 'break'),
-      entry.newType('End break', 'end', 'break')
+      timeEntry.newType('Clock in', 'start', 'log'),
+      timeEntry.newType('Clock out', 'end', 'log'),
+      timeEntry.newType('Start break', 'start', 'break'),
+      timeEntry.newType('End break', 'end', 'break')
     ];
 
-    entry.setDate( $scope.datePick );
+    timeEntry.setDate( $scope.datePick );
 
-    $scope.entries = entry.getEntries;
+    $scope.entries = timeEntry.getEntries;
 
     $scope.newTimeHour = 0;
 
@@ -68,8 +68,8 @@ angular.module('sliderDemo')
     $scope.createEntry = function () {
       if(typeof $scope.newType != 'undefined') {
         if(!($scope.newType.getData().group == 'break' && typeof $scope.newReason == 'undefined')) {
-          entry.setDate( $scope.datePick );
-          entry.create( $scope.newType, timeUtility.toValue($scope.newTimeHour, $scope.newTimeMin), $scope.newReason );
+          timeEntry.setDate( $scope.datePick );
+          timeEntry.create( $scope.newType, timeUtility.toValue($scope.newTimeHour, $scope.newTimeMin), $scope.newReason );
           $scope.newTimeHour = 0;
           $scope.newTimeMin = 0;
           $scope.newReason = undefined;
@@ -81,8 +81,8 @@ angular.module('sliderDemo')
       }
     };
 
-    $scope.removeEntry = function (entryItem) {
-      entry.remove(entryItem);
+    $scope.removeEntry = function (entry) {
+      timeEntry.remove(entry);
     }
 
   })

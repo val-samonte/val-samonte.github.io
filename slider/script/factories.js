@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('sliderDemo')
-  .factory('entry', function () {
+  .factory('timeEntry', function () {
     var _entries = [], _date = new Date().toDateString();
     var Entry = function (type, value, reason) {
       if(!(type instanceof EntryType)) {
