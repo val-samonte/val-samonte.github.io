@@ -144,6 +144,7 @@
           $scope.zoomOn(0);
           $scope.onSliderScroll = function (event, delta) {
             $scope.zoomOn(delta);
+            event.preventDefault();
           };
 
           $scope.entryTypes = [
