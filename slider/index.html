@@ -138,7 +138,7 @@
             } else if($scope.zoomIndex >= $scope.zoomPoints.length) {
               $scope.zoomIndex = $scope.zoomPoints.length - 1;
             }
-            $scope.step = 1;
+            $scope.step = 4;
             $scope.zoom = $scope.zoomPoints[$scope.zoomIndex].multiplier*400;
           };
           $scope.onSliderScroll = function (event, delta) {
