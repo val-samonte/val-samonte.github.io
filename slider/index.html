@@ -66,6 +66,7 @@
     <div id="slider-container" msd-wheel="onSliderScroll($event, $delta)">
       <vds-slider ng-model="entries[datePick+'']" width="zoom" step="step"></vds-slider>
     </div>
+    <input type="number" ng-model="step">
   </div>
 
   <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -138,7 +139,7 @@
             } else if($scope.zoomIndex >= $scope.zoomPoints.length) {
               $scope.zoomIndex = $scope.zoomPoints.length - 1;
             }
-            $scope.step = 4;
+//            $scope.step = 4;
             $scope.zoom = $scope.zoomPoints[$scope.zoomIndex].multiplier*400;
           };
           $scope.onSliderScroll = function (event, delta) {
