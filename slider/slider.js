@@ -42,7 +42,7 @@ angular.module('vds.slider',[])
           '<button data-toggle="tooltip" data-placement="top" title="{{data.label}}" type="button" ng-mousedown="dragging = true" ng-mouseup="dragging = false"></button><div class="vds-pin"></div>'+
         '</li>',
       link: function (scope, elem, attr, ctrl) {
-
+        elem.tooltip();
       }
     };
   })
