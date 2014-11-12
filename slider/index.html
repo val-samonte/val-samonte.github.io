@@ -127,10 +127,9 @@
           $scope.zoomPoints = [
             { multiplier: 1, step: 0.01041666666 },
             { multiplier: 1.4, step: 0.00347222222 },
-            { multiplier: 1.8, step: 1 },
-            { multiplier: 2.2, step: 1 }
+            { multiplier: 1.8, step: 0.0006944444444444445 },
+            { multiplier: 2.2, step: 0.0006944444444444445 }
           ];
-          $scope.step = 4.1666666666666664;
           $scope.zoomIndex = 0;
           $scope.zoomOn = function (delta) {
             $scope.zoomIndex += delta;
@@ -142,6 +141,7 @@
             $scope.zoom = $scope.zoomPoints[$scope.zoomIndex].multiplier*400;
             $scope.step = $scope.zoomPoints[$scope.zoomIndex].step * $scope.zoom;
           };
+          $scope.zoomOn(0);
           $scope.onSliderScroll = function (event, delta) {
             $scope.zoomOn(delta);
           };
