@@ -58,13 +58,13 @@
     <ul class="entry-list">
       <li ng-repeat="entry in entries[datePick+''] | orderBy: 'val'  ">
         <label class="time-input-label">{{ entry.getTypeData().label }} </label>
-        <time-input ng-model="entry.val" step="step"></time-input>
+        <time-input ng-model="entry.val"></time-input>
         <button type="button" ng-click="removeEntry(entry)">Remove</button>
       </li>
     </ul>
     <div>Zoom x{{ zoomIndex+1 }} <button type="button" ng-click="zoomOn(1)">+</button><button type="button" ng-click="zoomOn(-1)">-</button></div>
     <div id="slider-container" msd-wheel="onSliderScroll($event, $delta)">
-      <vds-slider ng-model="entries[datePick+'']" width="zoom"></vds-slider>
+      <vds-slider ng-model="entries[datePick+'']" width="zoom" step="step"></vds-slider>
     </div>
   </div>
 
