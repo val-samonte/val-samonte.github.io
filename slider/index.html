@@ -175,7 +175,6 @@
           $scope.addNewEntry = function () {
             if(typeof $scope.newType != 'undefined') {
               if($scope.newType.getData().group == 'break' && typeof $scope.newReason == 'undefined') {
-                console.log($scope.newType.getData().group == 'break', $scope.newReason)
                 alert('Please provide your reason for taking a break.');
               } else {
                 if(typeof $scope.entries[$scope.datePick] == 'undefined') {
