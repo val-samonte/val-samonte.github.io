@@ -40,16 +40,20 @@
 
   <div ng-controller="DemoCtrl">
     <form ng-submit="addNewEntry()">
-      <div style="display:inline-block; min-height:290px;">
-        <datepicker ng-model="datePick" min-date="minDate" class="well well-sm"></datepicker>
+      <div class="col-sm-6">
+        <div style="display:inline-block; min-height:290px;">
+          <datepicker ng-model="datePick" min-date="minDate" class="well well-sm"></datepicker>
+        </div>
       </div>
-      <div>
-        <p>Enter new entry:</p>
-        <input type="number" class="time-input" ng-model="newTimeHour" min="0" max="23"> :
-        <input type="number" class="time-input" ng-model="newTimeMin" min="0" max="59">
-        <select ng-model="newType" ng-options="type.getData().label for type in entryTypes" required></select>
-        <input type="text" ng-show="newType.getData().group=='break'" placeholder="Provide reason" ng-model="newReason">
-        <button type="submit">Add</button>
+      <div class="col-sm-6">
+        <div>
+          <p>Enter new entry:</p>
+          <input type="number" class="time-input" ng-model="newTimeHour" min="0" max="23"> :
+          <input type="number" class="time-input" ng-model="newTimeMin" min="0" max="59">
+          <select ng-model="newType" ng-options="type.getData().label for type in entryTypes" required></select>
+          <input type="text" ng-show="newType.getData().group=='break'" placeholder="Provide reason" ng-model="newReason">
+          <button type="submit">Add</button>
+        </div>
       </div>
     </form>
     <hr>
