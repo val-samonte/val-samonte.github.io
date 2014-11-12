@@ -22,6 +22,7 @@ angular.module('vds.slider',[])
           } else if(posx < 0) {
             posx = 0;
           }
+          console.log(Math.round(posx*100/scope.step) / 100 * scope.step, step, posx);
           scope.mouseX = Math.round(posx*100/scope.step) / 100 * scope.step;
         }
 
