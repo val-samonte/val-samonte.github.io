@@ -129,7 +129,7 @@
             { label: 'Minute', step: timeUtility.minuteToFraction(1), points: [] }
           ];
           for(var i=0; i<$scope.measures.length; i++) {
-            $scope.measures[i] = [];
+            $scope.measures[i].points = [];
             for(var j=0; j<1; j+= $scope.measures[i].step) {
               $scope.measures[i].points.push(j);
             }
