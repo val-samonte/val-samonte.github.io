@@ -1,0 +1,254 @@
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:900,500,700);*/
+@font-face {
+    font-family: 'Roboto';
+    src:
+        url('fonts/Roboto500.woff2') format('woff2'),
+        url('fonts/Roboto900.woff2') format('woff2');
+}
+
+@-webkit-keyframes bounce {
+  0%   { top: 0px; }
+  50%  { top: -20px; }
+  100% { top: 0px; }
+}
+
+@-webkit-keyframes zigzag {
+  0%   { left: 0px; }
+  50%  { left: -20px; }
+  100% { left: 0px; }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+ul {
+  list-style: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.main-app-container {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+}
+
+.clouds {
+  background-image: url('../img/clouds.png');
+  background-repeat: no-repeat;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  pointer-events: none;
+  -webkit-animation: zigzag 5s infinite alternate;
+  transition: all 5s ease-in-out;
+}
+
+.balloons {
+  background-image: url('../img/balloons.png');
+  background-repeat: no-repeat;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+  -webkit-animation: bounce 4s infinite alternate;
+  transition: all 4s ease-in-out;
+}
+
+.background {
+  background-color: #333;
+  background-image: url('../img/background.jpg');
+  background-repeat: no-repeat;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floors {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.floors .first {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.floors .second {
+  visibility: hidden;
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: absolute;
+  top: -100px;
+  left: 0;
+  z-index: 20;
+}
+
+.map {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.first .map {
+  background-image: url('../img/floor1.png');
+
+}
+
+.second .map {
+  background-image: url('../img/floor2.png');
+
+}
+
+.first .i {
+  left: 351px;
+  top: 298px;
+}
+
+.first .ii {
+  left: 1037px;
+  top: 174px;
+}
+
+.first .iii {
+  left: 1436px;
+  top: 31px;
+}
+
+.first .iv {
+  left: 193px;
+  top: 61px;
+}
+
+.second .i {
+  left: 438px;
+  top: 806px;
+}
+
+.second .ii {
+  left: 1353px;
+  top: 576px;
+}
+
+.second .iii {
+  left: 1118px;
+  top: 72px;
+}
+
+.second .iv {
+  left: 351px;
+  top: 298px;
+}
+
+.gallery-btn {
+  position: absolute;
+
+}
+
+.back {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 145;
+  visibility: hidden;
+}
+
+.fade {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 1920px;
+  height: 1080px;
+  background-color: rgba(255,255,255,0.4);
+}
+
+.info {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 1920px;
+  height: 1080px;
+  /*background-color: rgba(0,0,0,0.2);*/
+}
+
+.info .list {
+  position: absolute;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 20px;
+  padding: 20px;
+  width: 600px;
+  height: 500px;
+  overflow-y: auto;
+  display: block;
+  border: 20px solid white;
+  box-shadow: 20px 20px 0px 0px rgba(0,0,0,0.2);
+}
+
+.info .list h1 {
+  margin: 10px 10px;
+}
+
+.info .list li {
+  margin: 10px 5px;
+}
+
+.point {
+  position: absolute;
+  text-align: center;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #c62525;
+}
+
+.index {
+  color: #c62525;
+}
+
+.point {
+  color: #fff;
+  font-size: 20px;
+  margin-left: -25px;
+  margin-top: -20px;
+  min-width: 25px;
+  min-height: 20px;
+}
+
+.point.selected {
+  background-color: #fcb040;
+}
