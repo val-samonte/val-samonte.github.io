@@ -24,14 +24,14 @@
   <div class="info" data="gallery" ng-click="stageClick($event)">
     <ul class="list" ng-style="{ left: gallery.x, top: gallery.y }">
       <h1>{{ gallery.name }}</h1>
-      <li class="item" ng-repeat="item in gallery.points">
+      <li class="item" ng-repeat="item in gallery.points" ng-class="{ selected: item==selected }">
         <a ng-click="itemClick(item)"><span class="index">{{ $index+1 }}</span> {{ item.name }}</a>
       </li>
     </ul>
     <ul class="points">
       <li class="point" ng-repeat="point in gallery.points" ng-style="{ left: point.x, top: point.y }"
         ng-class="{ selected: point==selected }">
-        <a ng-click="itemClick(item)">{{ $index+1 }}</a>
+        <a ng-click="itemClick(point)">{{ $index+1 }}</a>
       </li>
     </ul>
   </div>
