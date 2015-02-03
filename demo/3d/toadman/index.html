@@ -83,9 +83,9 @@
     animate();
     function init() {
 
-      if(Detector.webgl) {
+      if(!Detector.webgl) {
         setTimeout(function() {
-          if(confirm('Your WebGL is not enabled. Want to enable it?')) {
+          if(confirm('Your WebGL is not enabled. Please enable your WebGL to view this page.')) {
             window.open("http://get.webgl.org","_blank");
           }
         },1000);
