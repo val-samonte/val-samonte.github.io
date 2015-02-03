@@ -86,6 +86,8 @@
       if(Detector.webgl) {
         if(confirm('Your WebGL is not enabled. Want to enable it?')) {
           window.open("http://get.webgl.org","_blank");
+        } else {
+          location.reload();
         }
         return;
       }
@@ -154,6 +156,9 @@
     }
 
     function animate() {
+
+      if(!Detector.webgl) return;
+
       requestAnimationFrame(animate);
 
       var delta = clock.getDelta();
