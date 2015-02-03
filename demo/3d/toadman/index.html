@@ -83,7 +83,7 @@
     animate();
     function init() {
 
-      if(!Detector.webgl) {
+      if(Detector.webgl) {
         if(confirm('Your WebGL is not enabled. Want to enable it?')) {
           window.location = "http://get.webgl.org";
         }
