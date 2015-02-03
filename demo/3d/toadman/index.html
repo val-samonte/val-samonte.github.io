@@ -17,7 +17,7 @@
       top: 8px;
       left: 10px;
       padding: 10px 10px;
-      background-color: rbga(255,255,255,0.2);
+      background-color: rgba(255,255,255,0.5);
     }
     .note p {
       margin: 0;
@@ -30,7 +30,7 @@
 <body>
   <div class="note">
     <h4>Toadman.exe</h4>
-    <p><a href="mailto:val.samonte@gmail.com?Subject=Hello">val.samonte@gmail.com</a></p>
+    <p><a href="mailto:val.samonte@gmail.com?Subject=Hello" target="_blank">val.samonte@gmail.com</a></p>
     <p>------------------------</p>
     <p>3d model designed in <a href="http://www.blender.org/" target="_blank">Blender</a></p>
     <p>Rendered in WebGL using <a href="http://threejs.org/" target="_blank">three.js</a></p>
@@ -86,7 +86,7 @@
       var WIDTH = window.innerWidth,
           HEIGHT = window.innerHeight;
 
-      renderer = new THREE.WebGLRenderer({antialias:true, alpha: true});
+      renderer = new THREE.CanvasRenderer({antialias:true, alpha: true});
       renderer.setSize(WIDTH, HEIGHT);
       document.body.appendChild(renderer.domElement);
       camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 10000);
