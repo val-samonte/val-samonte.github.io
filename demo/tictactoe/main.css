@@ -1,0 +1,233 @@
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+@import url(http://fonts.googleapis.com/css?family=Pacifico);
+
+body {
+  font-family: 'Pacifico', cursive;
+}
+
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+.symbol {
+  font-family: 'FontAwesome', sans-serif;
+  font-size: 60px;
+  font-style: normal;
+  line-height: 90px;
+  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.icon {
+  font-family: 'FontAwesome', sans-serif;
+  font-style: normal;
+  margin-right: 10px;
+}
+
+.symbol.fontawesome-star, .icon.fontawesome-star {
+  color: yellow;
+}
+
+.symbol.fontawesome-heart, .icon.fontawesome-heart {
+  color: hotpink;
+}
+
+.symbol.fontawesome-bolt, .icon.fontawesome-bolt {
+  color: purple;
+}
+
+.symbol.fontawesome-cloud, .icon.fontawesome-cloud {
+  color: dodgerblue;
+}
+
+.symbol.fontawesome-leaf, .icon.fontawesome-leaf {
+  color: olivedrab;
+}
+
+
+.tile {
+  width: 30%;
+  height: 30%;
+  margin: 1.5%;
+  background-color: white;
+  display: block;
+  float: left;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: inset 0px -3px 14px -5px rgba(0,0,0,0.5), 0 0 2px 1px rgba(0,0,0,0.25);
+  border-radius: 10px;
+}
+
+.tile.highlight {
+  background-color: aqua;
+}
+
+.grid {
+  width: 300px;
+  height: 300px;
+  float: left;
+}
+
+.player-pane {
+  width: 300px;
+  height: 300px;
+  text-align: center;
+  float: left;
+}
+
+  .player-pane .player-chip {
+    box-sizing: border-box;
+    padding: 30px 0;
+    width: 200px;
+    height: 200px;
+    margin: 50px auto;
+    border-radius: 50%;
+    background-color: white;
+    color: darkslategrey;
+    font-size: 20px;
+    transition: all 0.25s;
+  }
+
+    .player-pane .player-chip.turn {
+      background-color: rgba(255,0,0,0.5);
+      color: white;
+    }
+
+    .player-pane .player-chip p {
+      margin: 0;
+    }
+
+      .player-pane .player-chip.turn p i.icon {
+        color: white;
+      }
+
+      .player-pane .player-chip p.message {
+        color: white;
+      }
+
+      .player-pane .player-chip p.player-name {
+        font-size: 35px;
+      }
+
+      .player-pane .player-chip p.player-name input {
+        background-color: transparent;
+        border: none;
+        color: darkslategrey;
+        font-family: 'Pacifico', cursive;
+        font-size: 35px;
+        outline: none;
+        width: 120px;
+      }
+
+      .player-pane .player-chip.turn p.player-name input {
+        color: white;
+      }
+
+
+.container {
+  width: 900px;
+  margin: 80px auto;
+}
+
+.round-result {
+  text-align: center;
+  font-size: 60px;
+  color: darkslategray;
+  font-weight: normal;
+}
+
+.next-round a {
+  font-size: 20px;
+  color: white;
+  background-color: rgba(255,0,0,0.5);
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px 20px;
+  cursor: pointer;
+  transition: all 1s;
+}
+
+.next-round a:hover {
+  background-color: rgba(255,0,0,0.75);
+}
+
+/***********************
+  ANIMATIONS LIKE PRO
+************************/
+
+@-webkit-keyframes wobble {
+  16.65% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  33.3% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+  49.95% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+  66.6% {
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+  83.25% {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes wobble {
+  16.65% {
+    -webkit-transform: translateY(8px);
+    -ms-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  33.3% {
+    -webkit-transform: translateY(-6px);
+    -ms-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+  49.95% {
+    -webkit-transform: translateY(4px);
+    -ms-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+  66.6% {
+    -webkit-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+  83.25% {
+    -webkit-transform: translateY(1px);
+    -ms-transform: translateY(1px);
+    transform: translateY(1px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
+.wobble {
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+.wobble.turn, .wobble:hover {
+  -webkit-animation-name: wobble;
+  animation-name: wobble;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
