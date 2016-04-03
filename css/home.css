@@ -95,9 +95,11 @@ footer > ul {
 @media only screen and (min-width : 768px) { 
     html, body { font-size: 1.1em; }
 } 
+
 @media only screen and (min-width : 1224px) {  
     html, body { font-size: 1.15em; }
 } 
+
 @media only screen and (min-width : 1440px) {  
     html, body { font-size: 1.18em; }
 }
