@@ -1,4 +1,99 @@
+@import url(https://fonts.googleapis.com/css?family=Playfair+Display:900|Source+Sans+Pro);
+
 html, body {
+    font-size: 0.95em;
+    font-family: 'Source Sans Pro', 'Arial', sans-serif; 
+    color: rgba(96,96,96,1);
     margin: 0;
     padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: rgba(0,20,55,1);
+}
+
+p {
+    line-height: 1.6em;
+}
+
+ul {
+    padding: 0;
+}
+
+ul li {
+    margin: 0;
+    display: inline-block;
+    padding: 0 0.5em;
+}
+
+ul li a, a {
+    text-decoration: none;
+    color: rgba(0,80,160,1);
+} 
+
+ul.links {
+    display: flex;
+    flex-direction: row;
+    padding: 0.5em;
+    background-color: rgba(0,0,0,0.015);
+}
+
+ul.links li {
+    flex: auto;
+    text-align: center;
+}
+
+hr {
+    margin-top: 2em; 
+    opacity: 0.15;
+}
+
+footer {
+    display: flex;
+    font-size: 0.8em;
+}
+
+footer > div {
+    flex: auto;
+    display: inline-block;
+}
+
+footer > ul {
+    display: inline-block;
+    margin: 0;
+}
+
+.home-content {
+    max-width: 36em;
+    padding: 1em;
+    margin: 0 auto;
+}
+
+.content {
+    text-align: center;
+}
+
+@media only screen and (min-width : 667px) {
+    html, body { 
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 0px;
+    }
+}
+
+@media only screen and (min-width : 768px) { 
+    html, body { font-size: 1.1em; }
+} 
+@media only screen and (min-width : 1224px) {  
+    html, body { font-size: 1.15em; }
+} 
+@media only screen and (min-width : 1440px) {  
+    html, body { font-size: 1.18em; }
 }
