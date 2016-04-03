@@ -30,6 +30,10 @@ ul li {
 
 ul li a, a {
     text-decoration: none;
+    color: rgba(0,80,160,0.8);
+} 
+
+ul li a:hover, a:hover {
     color: rgba(0,80,160,1);
 } 
 
