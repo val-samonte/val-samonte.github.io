@@ -55,14 +55,12 @@ hr {
 }
 
 footer {
-    display: flex;
     font-size: 0.8em;
 }
 
-footer > div {
-    flex: auto;
+footer div {
     display: inline-block;
-    text-align: left;
+    padding: 0 0.5em;
 }
 
 footer > ul {
