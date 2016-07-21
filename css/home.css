@@ -7,6 +7,16 @@ html, body {
     margin: 90px;
 }
 
+.content h2 {
+    display: flex;
+    align-items: center;
+}
+
+.content h2 .logo-small {
+    height: 1.5em;
+    margin-right: 0.25em;
+}
+
 a {
     text-decoration: none;
 }
